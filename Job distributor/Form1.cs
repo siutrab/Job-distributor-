@@ -16,5 +16,11 @@ namespace Job_distributor
         {
             InitializeComponent();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            DatabaseConnection myDBmng = new DatabaseConnection();
+            myDBmng.connectDatabase();
+        }
     }
 }

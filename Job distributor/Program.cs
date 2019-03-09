@@ -13,15 +13,17 @@ namespace Job_distributor
         /// Główny punkt wejścia dla aplikacji.
         /// </summary>
         /// 
-
-          SqlConnection polaczenie = new SqlConnection();
-       
+        
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+
+
+
+
         }
     }
 }
