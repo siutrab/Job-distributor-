@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
 
 namespace Job_distributor
 {
@@ -15,30 +16,39 @@ namespace Job_distributor
         //private static string JobDistributorCS = @"C:\Databases\JOB-DISTRIBUTOR.mdf";
         //private string ConnectionStringJobDistributor = $"Server={ServerAdressCS};Database={JobDistributorCS};Trusted_Connection=True;";
 
-        //private SqlConnection ActualConnection;
-
+        private MySqlConnection ActualConnection;
+        private MySqlCommand ActualCommand;
         
         /// SETTERS
         private void setDatabaseConnection(IDatabase DBInterface)
         {
             string connectionString = DBInterface.ConnectionString;     // Getting the connection string
+            string command = @"INSERT INTO `employees`(`Name`, `Surname`) VALUES ('juzio','kaluzio');";
 
+            this.ActualConnection = new MySqlConnection(connectionString);
+            this.ActualCommand = new MySqlCommand(command, this.ActualConnection);
             try
             {
+                this.ActualConnection.Open();
 
-                SqlConnection ActualConnection = new SqlConnection(connectionString);
-                //this.ActualConnection.ConnectionString = connectionString;
-                ActualConnection.Open();
-                Console.WriteLine("dziala");
-               
-
-            }
-            catch
-            {
-                Console.WriteLine("dupa");
-                throw new SystemException("no DB connection");
+                //MySqlDataReader DataReader = 
+                    this.ActualCommand.ExecuteReader();
                 
+                Console.WriteLine("dziala");
+
+            this.ActualConnection.Close();
+
             }
+            catch(Exception e)
+            {
+                throw e;                
+            }
+            
+        }
+
+        public void DataBaseInsert(string command)
+        {
+            
             
         }
 
@@ -48,12 +58,6 @@ namespace Job_distributor
         {
                 this.setDatabaseConnection(DBInterface);
         }
-
-        public void disconnectDatabase()
-        {
-
-        }
-
     }
 
     interface IDatabase
@@ -63,11 +67,7 @@ namespace Job_distributor
 
     class JobDistriutor : IDatabase
     {
-        private static string ServerAdressCS = @"C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL";
-        private static string JobDistributorCS = @"C:\Databases\JOB-DISTRIBUTOR.mdf";
-        //private string connectionString = $"Server={ServerAdressCS};Database={JobDistributorCS};Trusted_Connection=True;";
-        private string connectionString = @"Data Source=LAPTOP-BARTEK\SQLEXPRESS01;Initial Catalog=JOB-DISTRIBUTOR;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-        //@"Data source=SERWER\SQLEXPRESS; database=adresy; User id=sa; Password=haslo;"
+        private string connectionString = @"datasource=127.0.0.1;port=3306;username=root;password=;database=taskdistribution;";
         string IDatabase.ConnectionString
             {
             get { 
@@ -75,6 +75,8 @@ namespace Job_distributor
                 }              
             }        
     }
+
+
 
 }
 

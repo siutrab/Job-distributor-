@@ -24,9 +24,10 @@ namespace Job_distributor
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DatabaseConnection myDBmng = new DatabaseConnection();
+            DatabaseQuery myDBmng = new DatabaseQuery();
             IDatabase databaseInterface = new JobDistriutor();
             myDBmng.connectDatabase(databaseInterface);
+           
         }
     }
 }
