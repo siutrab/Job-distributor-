@@ -19,15 +19,15 @@ namespace Job_distributor
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DatabaseConnection myDBmng = new DatabaseConnection();
-            IDatabase databaseInterface = new TaskDistriution();
-            myDBmng.connectDatabase(databaseInterface);
-           
+            //DatabaseQuery myDBmng = new DatabaseQuery();
+            //IDatabase databaseInterface = new TaskDistriution();
+            //myDBmng.connectDatabase(databaseInterface);
+
         }
 
 
