@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Job_distributor
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
@@ -24,10 +24,12 @@ namespace Job_distributor
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DatabaseQuery myDBmng = new DatabaseQuery();
-            IDatabase databaseInterface = new JobDistriutor();
+            DatabaseConnection myDBmng = new DatabaseConnection();
+            IDatabase databaseInterface = new TaskDistriution();
             myDBmng.connectDatabase(databaseInterface);
            
         }
+
+
     }
 }

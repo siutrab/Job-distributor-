@@ -12,17 +12,13 @@ namespace Job_distributor
 {
     class DatabaseConnection
     {
-        //private static string ServerAdressCS = @"C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL";
-        //private static string JobDistributorCS = @"C:\Databases\JOB-DISTRIBUTOR.mdf";
-        //private string ConnectionStringJobDistributor = $"Server={ServerAdressCS};Database={JobDistributorCS};Trusted_Connection=True;";
-
         private MySqlConnection ActualConnection;
         private MySqlCommand ActualCommand;
         
         /// SETTERS
-        private void setDatabaseConnection(IDatabase DBInterface)
+        private void setDatabaseConnection(IDatabase DataBaseInterface)
         {
-            string connectionString = DBInterface.ConnectionString;     // Getting the connection string
+            string connectionString = DataBaseInterface.ConnectionString;     // Getting the connection string
             string command = @"INSERT INTO `employees`(`Name`, `Surname`) VALUES ('juzio','kaluzio');";
 
             this.ActualConnection = new MySqlConnection(connectionString);
@@ -30,9 +26,8 @@ namespace Job_distributor
             try
             {
                 this.ActualConnection.Open();
-
-                //MySqlDataReader DataReader = 
-                    this.ActualCommand.ExecuteReader();
+                // Executing query
+                this.ActualCommand.ExecuteReader();
                 
                 Console.WriteLine("dziala");
 
@@ -65,7 +60,7 @@ namespace Job_distributor
           string ConnectionString { get; }
     }
 
-    class JobDistriutor : IDatabase
+    class TaskDistriution : IDatabase
     {
         private string connectionString = @"datasource=127.0.0.1;port=3306;username=root;password=;database=taskdistribution;";
         string IDatabase.ConnectionString
@@ -76,8 +71,7 @@ namespace Job_distributor
             }        
     }
 
-
-
+    
 }
 
 
