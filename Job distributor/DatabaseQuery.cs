@@ -7,37 +7,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using Tasks;
 
 namespace DatabaseManagment
 {
-    interface IDatabase
+    interface IDatabaseQuerys
     {
-          string ConnectionString { get; }
+        void loadFromDataBase(int id);
+        void initiateClassFiles(MySqlDataReader DataReader);
     }
 
-    class TaskDistriution : IDatabase
-    {
-        private string connectionString = @"datasource=127.0.0.1;port=3306;username=root;password=;database=taskdistribution;";
-        string IDatabase.ConnectionString
-            {
-            get { 
-                return this.connectionString;
-                }              
-            }        
-    }
     class DatabaseQuery
     {
         private MySqlConnection ActualConnection;
         private MySqlCommand ActualCommand;
         private MySqlDataReader ActualDataReader;
-        private delegate void SetFieldsClass();
-        /// SETTERS
-        private void DataBaseSelect(IDatabase DataBaseInterface, string command, Delegate SetFieldsInClass)
+        private delegate void loadFromDatabase(MySqlDataReader DataReader);
+
+
+        public void DataBaseSelect(IDatabase DataBaseInterface, string command, IDatabaseQuerys IQuerys)
         {
             string connectionString = DataBaseInterface.ConnectionString;     // Getting the connection string
             ActualConnection = new MySqlConnection(connectionString);
             ActualCommand = new MySqlCommand(command, ActualConnection);
-            
+            ///loadFromDatabase loadDelegate = new loadFromDatabase(loading());
             try
             {
                 this.ActualConnection.Open();
@@ -47,7 +40,7 @@ namespace DatabaseManagment
                 // Reading values from database after SELECT query
                 if(ActualDataReader.Read())
                 {
-
+                    IQuerys.initiateClassFiles(ActualDataReader);
                 }
 
                 ActualConnection.Close();
@@ -79,21 +72,25 @@ namespace DatabaseManagment
             catch(Exception e)
             {
                 throw e;
-            }
-            
+            }           
         }
-
-
-        ///// PUBLIC METHODS
-        //public void connectDatabase(IDatabase DBInterface)
-        //{
-        //        this.setDatabaseConnection(DBInterface);
-        //}
     }
 
+    interface IDatabase
+    {
+          string ConnectionString { get; }
+    }
 
-
-    
+    class TaskDistriution : IDatabase
+    {
+        private static string connectionString = @"datasource=127.0.0.1;port=3306;username=root;password=;database=taskdistribution;";
+        string IDatabase.ConnectionString
+        {
+        get { 
+            return connectionString;
+            }              
+        }        
+    }
 }
 
 
