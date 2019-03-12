@@ -7,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Tasks;
 
-namespace Job_distributor
+namespace TaskDistributor
 {
     public partial class MainForm : Form
     {
@@ -24,12 +25,11 @@ namespace Job_distributor
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //DatabaseQuery myDBmng = new DatabaseQuery();
-            //IDatabase databaseInterface = new TaskDistriution();
-            //myDBmng.connectDatabase(databaseInterface);
+            Tasks.TaskToDo task = new Tasks.TaskToDo(1);
+            task.selectfromDB();
+            TaskList tl = new TaskList();
+           
 
         }
-
-
     }
 }

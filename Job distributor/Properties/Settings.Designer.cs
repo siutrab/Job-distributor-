@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Job_distributor.Properties
+namespace TaskDistributor.Properties
 {
 
 

@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Job_distributor
+namespace TaskDistributor
 {
     public partial class ManagerLayout : UserControl
     {
         public ManagerLayout()
         {
             InitializeComponent();
+        }
+
+        private void taskListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }

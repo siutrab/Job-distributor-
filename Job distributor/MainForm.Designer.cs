@@ -1,4 +1,4 @@
-﻿namespace Job_distributor
+﻿namespace TaskDistributor
 {
     partial class MainForm
     {
@@ -29,8 +29,9 @@
         private void InitializeComponent()
         {
             this.button1 = new System.Windows.Forms.Button();
-            this.loginUserControl = new Job_distributor.LoginUserControl();
-            this.managerLayout1 = new Job_distributor.ManagerLayout();
+            this.managerLayout1 = new TaskDistributor.ManagerLayout();
+            this.loginUserControl = new TaskDistributor.LoginUserControl();
+            this.listView1 = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
             // button1
@@ -43,6 +44,13 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // managerLayout1
+            // 
+            this.managerLayout1.Location = new System.Drawing.Point(29, 149);
+            this.managerLayout1.Name = "managerLayout1";
+            this.managerLayout1.Size = new System.Drawing.Size(600, 600);
+            this.managerLayout1.TabIndex = 8;
+            // 
             // loginUserControl
             // 
             this.loginUserControl.Location = new System.Drawing.Point(12, 12);
@@ -51,18 +59,20 @@
             this.loginUserControl.TabIndex = 7;
             this.loginUserControl.Visible = false;
             // 
-            // managerLayout1
+            // listView1
             // 
-            this.managerLayout1.Location = new System.Drawing.Point(29, 149);
-            this.managerLayout1.Name = "managerLayout1";
-            this.managerLayout1.Size = new System.Drawing.Size(600, 600);
-            this.managerLayout1.TabIndex = 8;
+            this.listView1.Location = new System.Drawing.Point(689, 84);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(291, 215);
+            this.listView1.TabIndex = 9;
+            this.listView1.UseCompatibleStateImageBehavior = false;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 821);
+            this.Controls.Add(this.listView1);
             this.Controls.Add(this.managerLayout1);
             this.Controls.Add(this.loginUserControl);
             this.Controls.Add(this.button1);
@@ -76,7 +86,8 @@
         #endregion
         private System.Windows.Forms.Button button1;
         private LoginUserControl loginUserControl;
-        private ManagerLayout managerLayout1;
+        public ManagerLayout managerLayout1;
+        private System.Windows.Forms.ListView listView1;
     }
 }
 

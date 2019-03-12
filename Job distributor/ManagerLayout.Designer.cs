@@ -1,4 +1,4 @@
-﻿namespace Job_distributor
+﻿namespace TaskDistributor
 {
     partial class ManagerLayout
     {
@@ -31,12 +31,12 @@
             this.taskListView = new System.Windows.Forms.ListView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabTask = new System.Windows.Forms.TabPage();
-            this.tabEmployees = new System.Windows.Forms.TabPage();
-            this.employeeListView = new System.Windows.Forms.ListView();
-            this.AddEmplButton = new System.Windows.Forms.Button();
-            this.RemoveEmplButton = new System.Windows.Forms.Button();
             this.RemoveTaskButton = new System.Windows.Forms.Button();
             this.AddTaskButton = new System.Windows.Forms.Button();
+            this.tabEmployees = new System.Windows.Forms.TabPage();
+            this.RemoveEmplButton = new System.Windows.Forms.Button();
+            this.AddEmplButton = new System.Windows.Forms.Button();
+            this.employeeListView = new System.Windows.Forms.ListView();
             this.tabControl1.SuspendLayout();
             this.tabTask.SuspendLayout();
             this.tabEmployees.SuspendLayout();
@@ -79,49 +79,6 @@
             this.tabTask.Text = "Tasks";
             this.tabTask.UseVisualStyleBackColor = true;
             // 
-            // tabEmployees
-            // 
-            this.tabEmployees.Controls.Add(this.RemoveEmplButton);
-            this.tabEmployees.Controls.Add(this.AddEmplButton);
-            this.tabEmployees.Controls.Add(this.employeeListView);
-            this.tabEmployees.Location = new System.Drawing.Point(4, 22);
-            this.tabEmployees.Name = "tabEmployees";
-            this.tabEmployees.Padding = new System.Windows.Forms.Padding(3);
-            this.tabEmployees.Size = new System.Drawing.Size(589, 403);
-            this.tabEmployees.TabIndex = 1;
-            this.tabEmployees.Text = "Employees";
-            this.tabEmployees.UseVisualStyleBackColor = true;
-            // 
-            // employeeListView
-            // 
-            this.employeeListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.employeeListView.AutoArrange = false;
-            this.employeeListView.Location = new System.Drawing.Point(0, 0);
-            this.employeeListView.Name = "employeeListView";
-            this.employeeListView.Size = new System.Drawing.Size(589, 363);
-            this.employeeListView.TabIndex = 2;
-            this.employeeListView.UseCompatibleStateImageBehavior = false;
-            // 
-            // AddEmplButton
-            // 
-            this.AddEmplButton.Location = new System.Drawing.Point(7, 370);
-            this.AddEmplButton.Name = "AddEmplButton";
-            this.AddEmplButton.Size = new System.Drawing.Size(114, 23);
-            this.AddEmplButton.TabIndex = 3;
-            this.AddEmplButton.Text = "Add Employee";
-            this.AddEmplButton.UseVisualStyleBackColor = true;
-            // 
-            // RemoveEmplButton
-            // 
-            this.RemoveEmplButton.Location = new System.Drawing.Point(127, 369);
-            this.RemoveEmplButton.Name = "RemoveEmplButton";
-            this.RemoveEmplButton.Size = new System.Drawing.Size(114, 23);
-            this.RemoveEmplButton.TabIndex = 4;
-            this.RemoveEmplButton.Text = "Remove Employee";
-            this.RemoveEmplButton.UseVisualStyleBackColor = true;
-            // 
             // RemoveTaskButton
             // 
             this.RemoveTaskButton.Location = new System.Drawing.Point(126, 373);
@@ -140,6 +97,49 @@
             this.AddTaskButton.Text = "Add Task";
             this.AddTaskButton.UseVisualStyleBackColor = true;
             // 
+            // tabEmployees
+            // 
+            this.tabEmployees.Controls.Add(this.RemoveEmplButton);
+            this.tabEmployees.Controls.Add(this.AddEmplButton);
+            this.tabEmployees.Controls.Add(this.employeeListView);
+            this.tabEmployees.Location = new System.Drawing.Point(4, 22);
+            this.tabEmployees.Name = "tabEmployees";
+            this.tabEmployees.Padding = new System.Windows.Forms.Padding(3);
+            this.tabEmployees.Size = new System.Drawing.Size(589, 403);
+            this.tabEmployees.TabIndex = 1;
+            this.tabEmployees.Text = "Employees";
+            this.tabEmployees.UseVisualStyleBackColor = true;
+            // 
+            // RemoveEmplButton
+            // 
+            this.RemoveEmplButton.Location = new System.Drawing.Point(127, 369);
+            this.RemoveEmplButton.Name = "RemoveEmplButton";
+            this.RemoveEmplButton.Size = new System.Drawing.Size(114, 23);
+            this.RemoveEmplButton.TabIndex = 4;
+            this.RemoveEmplButton.Text = "Remove Employee";
+            this.RemoveEmplButton.UseVisualStyleBackColor = true;
+            // 
+            // AddEmplButton
+            // 
+            this.AddEmplButton.Location = new System.Drawing.Point(7, 370);
+            this.AddEmplButton.Name = "AddEmplButton";
+            this.AddEmplButton.Size = new System.Drawing.Size(114, 23);
+            this.AddEmplButton.TabIndex = 3;
+            this.AddEmplButton.Text = "Add Employee";
+            this.AddEmplButton.UseVisualStyleBackColor = true;
+            // 
+            // employeeListView
+            // 
+            this.employeeListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.employeeListView.AutoArrange = false;
+            this.employeeListView.Location = new System.Drawing.Point(0, 0);
+            this.employeeListView.Name = "employeeListView";
+            this.employeeListView.Size = new System.Drawing.Size(589, 363);
+            this.employeeListView.TabIndex = 2;
+            this.employeeListView.UseCompatibleStateImageBehavior = false;
+            // 
             // ManagerLayout
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -156,14 +156,14 @@
 
         #endregion
 
-        private System.Windows.Forms.ListView taskListView;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabTask;
-        private System.Windows.Forms.Button RemoveTaskButton;
-        private System.Windows.Forms.Button AddTaskButton;
-        private System.Windows.Forms.TabPage tabEmployees;
-        private System.Windows.Forms.Button RemoveEmplButton;
-        private System.Windows.Forms.Button AddEmplButton;
-        private System.Windows.Forms.ListView employeeListView;
+        public System.Windows.Forms.ListView taskListView;
+        public System.Windows.Forms.TabControl tabControl1;
+        public System.Windows.Forms.TabPage tabTask;
+        public System.Windows.Forms.Button RemoveTaskButton;
+        public System.Windows.Forms.Button AddTaskButton;
+        public System.Windows.Forms.TabPage tabEmployees;
+        public System.Windows.Forms.Button RemoveEmplButton;
+        public System.Windows.Forms.Button AddEmplButton;
+        public System.Windows.Forms.ListView employeeListView;
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Job_distributor
+﻿namespace TaskDistributor
 {
     partial class LoginUserControl
     {

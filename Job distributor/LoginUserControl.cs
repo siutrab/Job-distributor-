@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Job_distributor
+namespace TaskDistributor
 {
     public partial class LoginUserControl : UserControl
     {

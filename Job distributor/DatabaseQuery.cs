@@ -11,40 +11,28 @@ using Tasks;
 
 namespace DatabaseManagment
 {
-    interface IDatabaseQuerys
-    {
-        void loadFromDataBase(int id);
-        void initiateClassFiles(MySqlDataReader DataReader);
-    }
-
     class DatabaseQuery
     {
-        private MySqlConnection ActualConnection;
-        private MySqlCommand ActualCommand;
-        private MySqlDataReader ActualDataReader;
-        private delegate void loadFromDatabase(MySqlDataReader DataReader);
+        private static MySqlConnection ConnectionDB;
+        private static MySqlCommand CommandDB;
+        private static MySqlDataReader DataReaderDB;
 
-
-        public void DataBaseSelect(IDatabase DataBaseInterface, string command, IDatabaseQuerys IQuerys)
+        private void setDatabaseConnection(IDatabase DataBase, string command)
         {
-            string connectionString = DataBaseInterface.ConnectionString;     // Getting the connection string
-            ActualConnection = new MySqlConnection(connectionString);
-            ActualCommand = new MySqlCommand(command, ActualConnection);
-            ///loadFromDatabase loadDelegate = new loadFromDatabase(loading());
+            string connectionString = DataBase.ConnectionString;     // Getting the connection string
+            ConnectionDB = new MySqlConnection(connectionString);
+            CommandDB = new MySqlCommand(command, ConnectionDB);
+        }
+
+        public MySqlDataReader selectQuery(IDatabase DataBase, string command)
+        {
+            setDatabaseConnection(DataBase, command);
+
             try
             {
-                this.ActualConnection.Open();
-                // Executing query and sending the response to ActualDataReader object
-                ActualDataReader = ActualCommand.ExecuteReader();
-
-                // Reading values from database after SELECT query
-                if(ActualDataReader.Read())
-                {
-                    IQuerys.initiateClassFiles(ActualDataReader);
-                }
-
-                ActualConnection.Close();
-
+                ConnectionDB.Open();
+                DataReaderDB = CommandDB.ExecuteReader();   // Executing query and sending the response to ActualDataReader object
+                return DataReaderDB;
             }
             catch (Exception e)
             {
@@ -52,22 +40,14 @@ namespace DatabaseManagment
             }
         }
 
-        public void DataBaseInsert(IDatabase DataBaseInterface, string command)
+        public void DataBaseQuery(IDatabase DataBase, string command)
         {
-            string connectionString = DataBaseInterface.ConnectionString;     // Getting the connection string
-            // command = @"INSERT INTO `employees`(`Name`, `Surname`) VALUES ('juzio','kaluzio');";
-
-            this.ActualConnection = new MySqlConnection(connectionString);
-            this.ActualCommand = new MySqlCommand(command, this.ActualConnection);
+            setDatabaseConnection(DataBase, command);
             try
             {
-                this.ActualConnection.Open();
-                // Executing query
-                this.ActualCommand.ExecuteReader();
-                
-
-            this.ActualConnection.Close();
-
+                ConnectionDB.Open();        // Opening db connection
+                CommandDB.ExecuteReader();  // Executing command
+                ConnectionDB.Close();       // Closing db connection
             }
             catch(Exception e)
             {
@@ -81,13 +61,14 @@ namespace DatabaseManagment
           string ConnectionString { get; }
     }
 
-    class TaskDistriution : IDatabase
+    class TaskDistriutionDatabase : IDatabase
     {
         private static string connectionString = @"datasource=127.0.0.1;port=3306;username=root;password=;database=taskdistribution;";
-        string IDatabase.ConnectionString
+        public string ConnectionString
         {
-        get { 
-            return connectionString;
+            get
+            { 
+                return connectionString;
             }              
         }        
     }
