@@ -24,21 +24,42 @@ namespace DatabaseManagment
             CommandDB = new MySqlCommand(command, ConnectionDB);
         }
 
-        public MySqlDataReader selectQuery(IDatabase DataBase, string command)
+        //public MySqlDataReader selectQuery(IDatabase DataBase, string command)
+        //{
+        //    setDatabaseConnection(DataBase, command);
+
+        //    try
+        //    {
+        //        ConnectionDB.Open();
+        //        DataReaderDB = CommandDB.ExecuteReader();   // Executing query and sending the response to ActualDataReader object
+        //        return DataReaderDB;
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        throw e;
+        //    }
+        //}
+
+        public DataTable selectQuery(IDatabase DataBase, string command)
         {
-            setDatabaseConnection(DataBase, command);
+            
 
             try
             {
-                ConnectionDB.Open();
-                DataReaderDB = CommandDB.ExecuteReader();   // Executing query and sending the response to ActualDataReader object
-                return DataReaderDB;
+                //ConnectionDB.Open();
+                //DataReaderDB = CommandDB.ExecuteReader();   // Executing query and sending the response to ActualDataReader object
+                MySqlConnection connection = new MySqlConnection(DataBase.ConnectionString);    
+                MySqlDataAdapter dataAdapter = new MySqlDataAdapter(command, connection);
+                DataTable dataTable = new DataTable();
+                return dataTable;
             }
             catch (Exception e)
             {
                 throw e;
             }
         }
+
+        
 
         public void DataBaseQuery(IDatabase DataBase, string command)
         {

@@ -7,6 +7,7 @@ using Employees;
 using MySql.Data.MySqlClient;
 using DatabaseManagment;
 using TaskDistributor;
+using System.Data;
 
 namespace Tasks
 {
@@ -29,33 +30,33 @@ namespace Tasks
 
 
 
-        // Loading from database
-        public void selectfromDB()
-        {
-            DatabaseQuery Query = new DatabaseQuery();
-            TaskDistriutionDatabase DataBase = new TaskDistriutionDatabase();
-            MySqlDataReader DataReader;
-            try
-            {
+        //// Loading from database
+        //public void selectfromDB()
+        //{
+        //    DatabaseQuery Query = new DatabaseQuery();
+        //    TaskDistriutionDatabase DataBase = new TaskDistriutionDatabase();
+        //    MySqlDataReader DataReader;
+        //    try
+        //    {
 
-                 DataReader = Query.selectQuery(DataBase, $"SELECT * FROM `tasks` WHERE id={id};");
-            }
-            catch(Exception e)
-            {
-                throw e;
-            }
+        //        DataReader = Query.selectQuery(DataBase, $"SELECT * FROM `tasks` WHERE id={id};");
+        //    }
+        //    catch(Exception e)
+        //    {
+        //        throw e;
+        //    }
 
-            if(DataReader.Read())
-            {
-            id = DataReader.GetInt32("id");
-            DeadLine = DataReader.GetDateTime("deadline");
-            // Task Type!!!
-            manHourPredicted = DataReader.GetInt32("man_hour");
-            realizationSpeedAvr = DataReader.GetDouble("realization_speed_avr");
-            realizationDegree = DataReader.GetDouble("realization_degree");
-            }
+        //    if(DataReader.Read())
+        //    {
+        //    id = DataReader.GetInt32("id");
+        //    DeadLine = DataReader.GetDateTime("deadline");
+        //    // Task Type!!!
+        //    manHourPredicted = DataReader.GetInt32("man_hour");
+        //    realizationSpeedAvr = DataReader.GetDouble("realization_speed_avr");
+        //    realizationDegree = DataReader.GetDouble("realization_degree");
+        //    }
 
-        }
+        //}
 
         // Calculating the priority
         public double calculatePriority()
@@ -71,29 +72,31 @@ namespace Tasks
         }
     }
 
-    class TaskList
+    class TaskDataTable
     {
-        public List<TaskToDo> ListOfTasks = new List<TaskToDo>();
-        int listLength;
+        ///public List<TaskToDo> ListOfTasks = new List<TaskToDo>();
+        //int listLength;
 
-        DatabaseQuery databaseQuery = new DatabaseQuery();
-        TaskDistriutionDatabase DataBase = new TaskDistriutionDatabase();
-        MySqlDataReader DataReader;
-        
-        public TaskList()
+        DataTable dataTable = new DataTable();
+
+        //DatabaseQuery databaseQuery = new DatabaseQuery();
+        //TaskDistriutionDatabase DataBase = new TaskDistriutionDatabase();
+        //MySqlDataReader DataReader;
+
+        public TaskDataTable()
         {
-            string command = "SELECT COUNT(`id`) FROM `tasks`;";    // Selecting the length of table
+            string command = "SELECT * FROM `tasks`;";    // Selecting the length of table
 
-            DataReader = databaseQuery.selectQuery(DataBase, command);
-            if(DataReader.Read())
-            {   
-                listLength = DataReader.GetInt32(0);    // result of above command is a single integral number, so GetInt at 0 position (there are no further ositions!)
-            }
+            //DataReader = databaseQuery.selectQuery(DataBase, command);
+            //if(DataReader.Read())
+            //{   
+            //    listLength = DataReader.GetInt32(0);    // result of above command is a single integral number, so GetInt at 0 position (there are no further ositions!)
+            //}
 
-            for(int i=1; i<listLength; i++)
-            {
-                ListOfTasks.Add(new TaskToDo(i));
-            }
+            //for(int i=1; i<listLength; i++)
+            //{
+            //    ListOfTasks.Add(new TaskToDo(i));
+            //}
             
             
         }
