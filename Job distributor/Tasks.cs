@@ -11,7 +11,7 @@ using System.Data;
 
 namespace Tasks
 {
-    class TaskToDo
+    class Taskss : StoredType
     {
         private int id;
         private double priority;                // Priority for creating lists
@@ -22,13 +22,31 @@ namespace Tasks
         private double realizationSpeedAvr;      // Calculated during realization of task
         private double realizationDegree;          // Estimated by employee at the end of the day
 
-        public TaskToDo(int TaskID)
+    /// CONSTRUCTORS AND FACTORIES
+        // NOT ELEGANT, COSMETICS NEEDED
+        // Needed for TaskCollection object to create a list of Taskss objects
+        private Taskss(DataRow dataRow)
         {
-            id = TaskID;    
-            selectfromDB(); // loading task from db
+            id = int.Parse(dataRow["id"].ToString());
+            DeadLine = DateTime.Parse(dataRow["deadline"].ToString());
+            manHourPredicted = int.Parse(dataRow["man_hour"].ToString());
+            realizationSpeedAvr = double.Parse(dataRow["realization_speed_avr"].ToString());
+            realizationDegree = double.Parse(dataRow["realization_degree"].ToString());
         }
 
+        public override Taskss createFromTableRow<Taskss>(DataRow dataRow)
+        {
+            StoredType task = new Tasks.Taskss(dataRow);
+            Taskss t = task;
+            return task;
+        }
 
+        public Taskss()
+        {
+            
+        }
+
+    /// METHODS
 
         //// Loading from database
         //public void selectfromDB()
@@ -72,34 +90,34 @@ namespace Tasks
         }
     }
 
-    class TaskDataTable
+    class TaskCollection
     {
-        ///public List<TaskToDo> ListOfTasks = new List<TaskToDo>();
-        //int listLength;
+        public List<Taskss> ListOfTasks = new List<Taskss>();
 
-        DataTable dataTable = new DataTable();
+        public DataTable dataTable = new DataTable();
 
-        //DatabaseQuery databaseQuery = new DatabaseQuery();
-        //TaskDistriutionDatabase DataBase = new TaskDistriutionDatabase();
-        //MySqlDataReader DataReader;
+        DatabaseQuery databaseQuery = new DatabaseQuery();
+        TaskDistriutionDatabase DataBase = new TaskDistriutionDatabase();
 
-        public TaskDataTable()
+        public TaskCollection()
         {
-            string command = "SELECT * FROM `tasks`;";    // Selecting the length of table
+            string command = "SELECT * FROM `tasks`;";
+            dataTable = databaseQuery.selectQuery(DataBase, command);
+            ListOfTasks = createTaskList();
 
-            //DataReader = databaseQuery.selectQuery(DataBase, command);
-            //if(DataReader.Read())
-            //{   
-            //    listLength = DataReader.GetInt32(0);    // result of above command is a single integral number, so GetInt at 0 position (there are no further ositions!)
-            //}
-
-            //for(int i=1; i<listLength; i++)
-            //{
-            //    ListOfTasks.Add(new TaskToDo(i));
-            //}
-            
-            
         }
+
+        public List<Taskss> createTaskList()
+        {
+            List<Taskss> TasksList = new List<Taskss>();
+            //foreach(DataRow row in dataTable.Rows)
+            //{
+            //    TasksList.Add(new Taskss(row));
+            //}
+            DataBaseCollection.toList<Taskss>(dataTable, );
+            return TasksList;
+        }
+
     }
 
     class TaskType

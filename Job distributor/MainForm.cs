@@ -25,9 +25,10 @@ namespace TaskDistributor
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Tasks.TaskToDo task = new Tasks.TaskToDo(1);
-            task.selectfromDB();
-            TaskList tl = new TaskList();
+            //Tasks.Taskss task = new Tasks.Taskss();
+            Tasks.TaskCollection tdt = new TaskCollection();
+            tdt.createTaskList();
+            Console.WriteLine(tdt.ListOfTasks[1].manHourPredicted.ToString());
            
 
         }

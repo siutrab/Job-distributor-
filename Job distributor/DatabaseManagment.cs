@@ -19,26 +19,10 @@ namespace DatabaseManagment
 
         private void setDatabaseConnection(IDatabase DataBase, string command)
         {
-            string connectionString = DataBase.ConnectionString;     // Getting the connection string
-            ConnectionDB = new MySqlConnection(connectionString);
+            ConnectionDB = new MySqlConnection(DataBase.ConnectionString);
             CommandDB = new MySqlCommand(command, ConnectionDB);
         }
 
-        //public MySqlDataReader selectQuery(IDatabase DataBase, string command)
-        //{
-        //    setDatabaseConnection(DataBase, command);
-
-        //    try
-        //    {
-        //        ConnectionDB.Open();
-        //        DataReaderDB = CommandDB.ExecuteReader();   // Executing query and sending the response to ActualDataReader object
-        //        return DataReaderDB;
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        throw e;
-        //    }
-        //}
 
         public DataTable selectQuery(IDatabase DataBase, string command)
         {
@@ -46,11 +30,10 @@ namespace DatabaseManagment
 
             try
             {
-                //ConnectionDB.Open();
-                //DataReaderDB = CommandDB.ExecuteReader();   // Executing query and sending the response to ActualDataReader object
                 MySqlConnection connection = new MySqlConnection(DataBase.ConnectionString);    
                 MySqlDataAdapter dataAdapter = new MySqlDataAdapter(command, connection);
                 DataTable dataTable = new DataTable();
+                dataAdapter.Fill(dataTable);
                 return dataTable;
             }
             catch (Exception e)
@@ -63,17 +46,37 @@ namespace DatabaseManagment
 
         public void DataBaseQuery(IDatabase DataBase, string command)
         {
+            ConnectionDB = new MySqlConnection(DataBase.ConnectionString);
+            CommandDB = new MySqlCommand(command, ConnectionDB);
+
             setDatabaseConnection(DataBase, command);
             try
             {
-                ConnectionDB.Open();        // Opening db connection
+                ConnectionDB.Open();
                 CommandDB.ExecuteReader();  // Executing command
-                ConnectionDB.Close();       // Closing db connection
+                ConnectionDB.Close();       
             }
             catch(Exception e)
             {
                 throw e;
             }           
+        }
+    }
+    abstract class StoredType
+    {
+        abstract public T createFromTableRow<T>(DataRow dataRow);
+    }
+
+    class DataBaseCollection
+    {
+        public static List<StoredType> toList(DataTable dataTable)
+        {
+            List<T> TasksList = new List<T>();
+            foreach (DataRow row in dataTable.Rows)
+            
+                TasksList.Add(storedType.createFromTableRow(row));
+            }
+            return TasksList;
         }
     }
 
