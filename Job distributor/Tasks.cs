@@ -88,9 +88,10 @@ namespace Tasks
 
     class TaskType : StoredType<TaskType>
     {
-        private float averageSpeed;
-        private float averageExperience;
-    
+        private int id;
+        private double averageSpeed;
+        // private double averageExperience;
+        
     // CONSTRUCTORS AND FACTORIES
         public TaskType createInstance(DataRow dataRow)
         {
@@ -100,7 +101,8 @@ namespace Tasks
         
         private TaskType(DataRow dataRow)
         {
-
+            id = int.Parse(dataRow["id"].ToString());
+            averageSpeed = double.Parse(dataRow["average_speed"].ToString());
         }
     }
 }

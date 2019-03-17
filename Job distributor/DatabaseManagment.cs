@@ -15,7 +15,6 @@ namespace DatabaseManagment
     {
         private static MySqlConnection ConnectionDB;
         private static MySqlCommand CommandDB;
-       // private static MySqlDataReader DataReaderDB;
 
         private void setDatabaseConnection(IDatabase DataBase, string command)
         {
