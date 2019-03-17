@@ -15,7 +15,7 @@ namespace DatabaseManagment
     {
         private static MySqlConnection ConnectionDB;
         private static MySqlCommand CommandDB;
-        private static MySqlDataReader DataReaderDB;
+       // private static MySqlDataReader DataReaderDB;
 
         private void setDatabaseConnection(IDatabase DataBase, string command)
         {
@@ -26,8 +26,6 @@ namespace DatabaseManagment
 
         public DataTable selectQuery(IDatabase DataBase, string command)
         {
-            
-
             try
             {
                 MySqlConnection connection = new MySqlConnection(DataBase.ConnectionString);    
@@ -62,21 +60,25 @@ namespace DatabaseManagment
             }           
         }
     }
-    abstract class StoredType
+
+    interface StoredType<T>
     {
-        abstract public T createFromTableRow<T>(DataRow dataRow);
+        T createInstance(DataRow dataRow);
     }
 
-    class DataBaseCollection
+    class DataBaseCollections
     {
-        public static List<StoredType> toList(DataTable dataTable)
+        // Creating list of objects. 
+        // There is requirement for createInstance() method inherited from StoredType<T> interface.
+        // That method should be a factory, that creates an object from a table row.
+        public static List<T> toList<T>(DataTable dataTable, StoredType<T> storedType)
         {
-            List<T> TasksList = new List<T>();
+            List<T> itemList = new List<T>();
             foreach (DataRow row in dataTable.Rows)
-            
-                TasksList.Add(storedType.createFromTableRow(row));
+            {
+                itemList.Add(storedType.createInstance(row));
             }
-            return TasksList;
+            return itemList;
         }
     }
 
