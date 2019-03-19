@@ -16,20 +16,21 @@ namespace TaskDistributor
         public MainForm()
         {
             InitializeComponent();
+            
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Tasks.TaskCollection tdt = new TaskCollection();
-            tdt.createTaskList();
-            Console.WriteLine(tdt.ListOfTasks[1].manHourPredicted.ToString());
-           
+         
 
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            LoginForm loginForm = new LoginForm();
+            this.Visible = false;
+            loginForm.ShowDialog();
         }
     }
 }

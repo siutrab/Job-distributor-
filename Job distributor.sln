@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Job distributor", "Job distributor\Job distributor.csproj", "{2C29C0E1-0F04-4B59-AF5C-22F6626F451F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task distributor", "Job distributor\Task distributor.csproj", "{2C29C0E1-0F04-4B59-AF5C-22F6626F451F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest.Tests", "UnitTest.Tests\UnitTest.Tests.csproj", "{7F0FDE2C-4995-48BC-AF46-2B64C4C19334}"
 EndProject

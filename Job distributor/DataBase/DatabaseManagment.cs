@@ -16,9 +16,20 @@ namespace DatabaseManagment
         private static MySqlConnection ConnectionDB;
         private static MySqlCommand CommandDB;
 
-        private void setDatabaseConnection(IDatabase DataBase, string command)
+        private void setDatabaseConnection(IDatabase DataBase)
         {
-            ConnectionDB = new MySqlConnection(DataBase.ConnectionString);
+            try
+            {
+                ConnectionDB = new MySqlConnection(DataBase.ConnectionString);
+            }
+            catch
+            {
+                throw new Exception("No database connection");
+            }
+        }
+
+        private void setCommand(string command)
+        {
             CommandDB = new MySqlCommand(command, ConnectionDB);
         }
 
@@ -27,8 +38,8 @@ namespace DatabaseManagment
         {
             try
             {
-                MySqlConnection connection = new MySqlConnection(DataBase.ConnectionString);    
-                MySqlDataAdapter dataAdapter = new MySqlDataAdapter(command, connection);
+                setDatabaseConnection(DataBase);    
+                MySqlDataAdapter dataAdapter = new MySqlDataAdapter(command, ConnectionDB);
                 DataTable dataTable = new DataTable();
                 dataAdapter.Fill(dataTable);
                 return dataTable;
@@ -43,10 +54,11 @@ namespace DatabaseManagment
 
         public void DataBaseQuery(IDatabase DataBase, string command)
         {
-            ConnectionDB = new MySqlConnection(DataBase.ConnectionString);
-            CommandDB = new MySqlCommand(command, ConnectionDB);
+            //ConnectionDB = new MySqlConnection(DataBase.ConnectionString);
+            //CommandDB = new MySqlCommand(command, ConnectionDB);
 
-            setDatabaseConnection(DataBase, command);
+            setDatabaseConnection(DataBase);
+            setCommand(command);
             try
             {
                 ConnectionDB.Open();
@@ -98,6 +110,3 @@ namespace DatabaseManagment
         }        
     }
 }
-
-
-
