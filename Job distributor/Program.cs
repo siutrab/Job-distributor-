@@ -9,20 +9,27 @@ namespace TaskDistributor
 {
     static class Program
     {
-        /// <summary>
-        /// Główny punkt wejścia dla aplikacji.
-        /// </summary>
-        /// 
-        
+
+        private static MainForm mainForm;
+
+
+    /// ENTRY POINT
+
         [STAThread]
-        static void Main()
+        public static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            mainForm = new MainForm();
+            Application.Run(mainForm);
+            
 
 
+        }
 
+        public static MainForm getMainForm()
+        {
+            return mainForm;
         }
     }
 }

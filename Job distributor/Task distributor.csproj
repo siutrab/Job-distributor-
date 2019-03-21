@@ -82,6 +82,7 @@
     <Compile Include="Data\Skills.cs" />
     <Compile Include="DataBase\SqlQueries.cs" />
     <Compile Include="Data\Tasks.cs" />
+    <Compile Include="Safety\Validation.cs" />
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>

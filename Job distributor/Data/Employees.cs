@@ -28,7 +28,7 @@ namespace Employees
             return new Employee(dataRow);
         }
 
-        Employee(DataRow dataRow)
+        private Employee(DataRow dataRow)
         {
             id = int.Parse(dataRow["id"].ToString());
             Name = dataRow["name"].ToString();

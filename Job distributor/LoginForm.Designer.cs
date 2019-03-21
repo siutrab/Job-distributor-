@@ -33,19 +33,23 @@
             // 
             // LoginControl
             // 
-            this.LoginControl.Location = new System.Drawing.Point(1, 0);
+            this.LoginControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LoginControl.Location = new System.Drawing.Point(0, 0);
             this.LoginControl.Name = "LoginControl";
-            this.LoginControl.Size = new System.Drawing.Size(305, 131);
+            this.LoginControl.Size = new System.Drawing.Size(308, 137);
             this.LoginControl.TabIndex = 0;
             // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(308, 137);
             this.Controls.Add(this.LoginControl);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.HelpButton = true;
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "LoginForm";
             this.Text = "Log In";
             this.ResumeLayout(false);
